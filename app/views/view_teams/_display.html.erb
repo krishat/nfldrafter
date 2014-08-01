@@ -1,0 +1,22 @@
+<h3>&nbsp; <strong><%= @team.name %></strong></h3>
+<div class="panel panel-primary">
+        <div class="panel-heading"><%= @team.name %> Table </div>
+			<table class="table">
+				<tr>
+					<th>Round</th>
+					<th>Pick No</th>
+					<th>Team Name</th>
+					<th>Team Division</th>
+					<th>Player</th>
+				</tr>
+				<% @team_details.each do |detail|%>
+				<tr>
+					<td><%= detail.round %></td>
+					<td><%= detail.pick_no %></td>
+					<td><%= get_team_details(detail.team_id) %></td>
+					<td><%= get_team_division(detail.team_id) %></td>
+					<td><%= get_player_name(detail.player_id) %></td>
+				</tr>
+				<%end%>
+    	</table>
+</div>

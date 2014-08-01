@@ -1,0 +1,50 @@
+<!-- Admin view to get all the details from ownership table -->
+<h1>Admin<small> - assign a player</small></h1>
+<div>
+<div class="panel panel-primary">
+		<div class="panel-heading">Admin Menu</div></br>
+			<div class="form-group">
+				<%=form_for "",url: sysadmin_path, html: {method: :get} do |f|%>
+				<strong> &nbsp; Round: </strong>
+				<%=f.select :indx, (1..7), prompt: params[:indx]%>
+				<%=f.submit "Go"%>
+				<%end%>
+			</div>
+</div>
+<% if flash[:notice] %>
+	<div class="alert alert-info alert-dismissible">
+		<button typr="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">close</span></button>
+		<strong><%= flash[:notice] %></strong>
+	</div>
+<% end %>
+<div class="panel panel-primary">
+	<div class="panel-heading">Ownership Details</div>
+	<table class="table">
+		<tr>
+			<th>Round</th>
+			<th>Pick</th>
+			<th>Team</th>
+			<th>Team Division</th>
+			<th>Choose a Player</th>
+		</tr>
+		<%@owned.each do |eachpick| %>
+		<tr>
+			<td><%= eachpick.round %></td>
+			<td><%= eachpick.pick_no %></td>
+			<td><%= eachpick.team.name %></td>
+			<td><%= eachpick.team.division %></td>
+			<td>
+				<% if eachpick.player %>
+				<%= eachpick.player.name %>
+				<% else %>
+				<%= form_for :player, url: acquire_player_path(eachpick), html: {method: :put} do |f|%>
+				<%= f.select "player_id", options_from_collection_for_select(@leftout_players, 'id', 'name')%>
+				<%= f.submit 'Select' %>
+				<% end %>
+				<%end%>
+
+			</td>
+		</tr>
+		<%end%>
+	</table>
+</div>   

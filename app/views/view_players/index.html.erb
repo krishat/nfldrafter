@@ -1,0 +1,31 @@
+
+<h2> Avilable Players By Position </h2>
+<div>
+<div class="panel panel-primary">
+        <div class="panel-heading">MENU - select a position to be viewed</div></br>
+            <%= form_for "",url: players_path(:position), html: {method: :get} do |f|%>
+                  <div class="form-group">
+                    <strong>&nbsp; Position:</strong>
+                    <%= f.select :position, @positions, selected: params[:position]%>
+                    <%= f.submit 'GO' %>
+                <%end%>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-primary">
+        <div class="panel-heading">Players Table</div>
+            <table class="table">
+            	<tr>
+            		<th>Player</th>
+            		<th>Position</th>
+                </tr>
+                <% @leftout_players.each do |player| %>
+                	<tr>
+                	<td> <%= player.name %> </td>
+                	<td> <%= player.position %></td>
+                	</tr>
+               <%end%>
+          </table>
+</div>
+

@@ -1,0 +1,32 @@
+<h2>Latest Three Picks</h2>
+<div class="panel panel-primary">
+        <div class="panel-heading">Latest Three Picks Table View</div>
+			<table class="table">
+				<tr>
+					<th>Round</th>
+					<th>Pick</th>
+					<th>Team</th>
+					<th>Assigned Player</th>
+				</tr>
+				<% @lastest_picks.each do |eachpick| %>
+				<tr>
+					<td><%= eachpick.round %></td>
+					<td><%= eachpick.pick_no %></td>
+					<td><%= eachpick.team.name %></td>
+					<% if eachpick.nil? %>
+					  <td> <%= no player assigned yet %> </td>
+					<% else %>
+					  <td> <%= eachpick.player.name %> </td>
+					<% end %>
+				<% end %>
+			</table>
+</div>
+</br>
+</br>
+<%unless @lastest_picks.blank?%>
+<h2>Next Team To Be Picked</h2>
+<div class="panel panel-success">
+        <div class="panel-heading">Next Team To Be Picked</div></br>
+        <strong> &nbsp; Team Name: <%= @next_team.name %> </strong>
+</div>
+<%end%>

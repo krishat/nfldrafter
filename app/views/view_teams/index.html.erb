@@ -1,0 +1,25 @@
+<h1>Team View</h1>
+<div>
+	<div class="panel panel-primary">
+		<div class="panel-heading">MENU - select a team and round</div>
+			<%=render partial: "view_teams/form"%>
+		</div>
+	</div>
+</div>
+
+
+<% if flash[:notice] %>
+	<div class="alert alert-info alert-dismissible">
+	 <button typr="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">close</span></button>
+		 <strong><%= flash[:notice] %></strong>
+	</div>
+<% end %>
+<div class="panel panel-primary">
+	<div class="panel-heading">Team Details</div>
+		<%unless @team_details.blank?%>
+		  <%= render partial: "view_teams/display"%>
+		<%else%>
+		  <h3>&nbsp; No Records Found Or Selected. </h3>
+		<%end%>
+    </div>
+</div>    

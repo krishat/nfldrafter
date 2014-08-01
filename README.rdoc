@@ -1,0 +1,35 @@
+== README
+
+This README documents what are the steps necessary to get the
+application up and running.
+
+Things need to be done:
+
+* Clone repo
+
+* Database initialization
+  -------------------------
+
+  rake db:migrate
+
+* Importing data into database
+  -----------------------------
+
+  rake import_data:all
+
+* Simulation of draft process
+  ----------------------------
+
+  rake simulate
+
+* Running Rails server on development mode
+  -----------------------------------------
+
+  rails s
+
+* How to run the test suite
+  --------------------------
+
+  rake
+
+Enjoy The Application :)

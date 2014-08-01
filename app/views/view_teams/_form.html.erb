@@ -1,0 +1,14 @@
+</br>
+<%= form_for "", url: teams_path, html: {method: :get} do |f|%>
+      <div class="form-group">
+    <strong>&nbsp; Round:</strong>
+    <%=f.select :round, ["all","1","2","3","4","5","6","7"], selected: params[:round]%>
+    <strong>&nbsp; Team:</strong>
+    <%if params[:team_id].present?%>
+      <%= f.select :team_id, options_from_collection_for_select(@all_teams,"id","name"), prompt: @all_teams.find_by_id(params[:team_id]).name%>
+    <%else%>
+      <%= f.select :team_id, options_from_collection_for_select(@all_teams,"id","name")%>
+    <%end%>
+    <%= f.submit 'GO' %>
+    </div>
+<%end%>
